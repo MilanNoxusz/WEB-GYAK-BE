@@ -72,9 +72,8 @@ nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; 
-    justify-content: center; 
-    background-color: linear-gradient(90deg, #4CAF50, #2E7D32); 
+    display: flex;
+    background-color: #4CAF50;
 }
 
 nav ul li {
@@ -86,20 +85,16 @@ nav ul li a {
     display: block;
     padding: 10px 20px;
     text-decoration: none;
-    color: #2E7D32; 
+    color: white;
     font-weight: bold;
-    transition: background-color 0.3s, color 0.3s; 
 }
 
 nav ul li a:hover {
-    background-color: #2E7D32; 
-    color: white; 
+    background-color: #45a049;
 }
 
 nav ul li.active a {
-    background-color: white; 
-    color: #4CAF50; 
-    border-radius: 4px; 
+    background-color: #2e7d32;
 }
 
 @media (max-width: 768px) {

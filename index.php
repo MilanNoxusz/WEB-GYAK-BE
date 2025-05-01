@@ -33,6 +33,7 @@ if (file_exists('./logicals/' . $keres['fajl'] . '.php')) {
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <li><a href="regisztral.php">Regisztráció</a></li>
         </ul>
     </nav>
     <main>
