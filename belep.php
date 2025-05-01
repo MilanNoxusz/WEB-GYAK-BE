@@ -27,3 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<footer>
+        <p>&copy; <?= date("Y") ?> <?= $lablec['ceg'] ?></p>
+        <p>Készítette: <B>Sári Bence(OK3ZO0)</B> és <b>Muskó Milán(HYZ9ZM)</b></p>
+        <p>Kapcsolat: info@utazasi-iroda.hu | Telefon: +36 1 234 5678</p>
+    </footer>
