@@ -97,6 +97,7 @@ nav ul li a:hover {
 
 nav ul li.active a {
     background-color: #2e7d32;
+    color: white; /* Fehér betűszín aktív állapotban */
 }
 
 @media (max-width: 768px) {
