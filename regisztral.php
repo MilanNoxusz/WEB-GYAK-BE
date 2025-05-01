@@ -1,11 +1,10 @@
 <?php
 include('./includes/config.inc.php');
 
+$dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0',
+                            array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-$conn = new mysqli('localhost', 'root', '', 'Adatok');
-if ($conn->connect_error) {
-    die('Kapcsolódási hiba: ' . $conn->connect_error);
-}
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $csn = $_POST['csn'];

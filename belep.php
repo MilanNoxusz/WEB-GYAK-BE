@@ -2,10 +2,10 @@
 session_start();
 include('./includes/config.inc.php');
 
-$conn = new mysqli('localhost', 'root', '', 'Adatok');
-if ($conn->connect_error) {
-    die('Kapcsolódási hiba: ' . $conn->connect_error);
-}
+$dbh = new PDO('mysql:host=localhost;dbname=adatb', 'webgyakbea', 'HYZ9ZM_OK3ZO0',
+                            array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = $_POST['login'];
