@@ -86,12 +86,13 @@ nav ul li a {
     display: block;
     padding: 10px 20px;
     text-decoration: none;
-    color: white;
+    color: #2E7D32; /* Zöld betűszín */
     font-weight: bold;
 }
 
 nav ul li a:hover {
     background-color: #45a049;
+    color: white; /* Fehér betűszín hover állapotban */
 }
 
 nav ul li.active a {
