@@ -1,0 +1,71 @@
+<!-- filepath: d:\WebEloadasBeadando\WEB-GYAK-BE\templates\pages\cimlap.tpl.php -->
+<section>
+    <p>
+        Fedezd fel a világot velünk! Széles körű utazási ajánlataink között biztosan megtalálod a számodra tökéletes úti célt. 
+        Legyen szó tengerparti nyaralásról, városnézésről vagy kalandtúráról, mi mindenben segítünk!
+    </p>
+    <p>
+        Foglalj most, és éld át életed legjobb utazási élményeit!
+    </p>
+</section>
+<section>
+    <h2>Miért válassz minket?</h2>
+    <ul>
+        <li>Tapasztalt és barátságos csapatunk segít minden lépésben.</li>
+        <li>Exkluzív ajánlatok és kedvezmények a legjobb árakon.</li>
+        <li>Széleskörű úti célok: egzotikus szigetek, történelmi városok, hegyi túrák és még sok más.</li>
+        <li>Rugalmas foglalási lehetőségek és 24/7 ügyfélszolgálat.</li>
+    </ul>
+</section>
+<section>
+    <h2>Legnépszerűbb úti céljaink</h2>
+    <p>
+        Nézd meg legnépszerűbb ajánlatainkat, amelyek garantáltan felejthetetlen élményeket nyújtanak:
+    </p>
+    <ul>
+        <li><strong>Maldív-szigetek:</strong> Kristálytiszta víz, fehér homokos partok és luxus üdülők.</li>
+        <li><strong>Párizs:</strong> A szerelem városa, tele romantikus látnivalókkal és gasztronómiai élményekkel.</li>
+        <li><strong>Alpok:</strong> Lélegzetelállító hegyi tájak és izgalmas síelési lehetőségek.</li>
+        <li><strong>Thaiföld:</strong> Egzotikus kultúra, ízletes ételek és lenyűgöző templomok.</li>
+    </ul>
+</section>
+<section>
+    <h2>Kapcsolatfelvétel</h2>
+    <p>
+        Ha bármilyen kérdésed van, vagy segítségre van szükséged az utazás megtervezésében, ne habozz kapcsolatba lépni velünk!
+    </p>
+    <p>
+        <strong>Email:</strong> info@utazasi-iroda.hu<br>
+        <strong>Telefon:</strong> +36 1 234 5678<br>
+        <strong>Cím:</strong> 1051 Budapest, Fő utca 1.
+    </p>
+</section>
+<section>
+    <h2>Hol találsz minket?</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2695.533378980561!2d19.037878676824214!3d47.49900289540075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dc3da8582ae9%3A0xb5a040b0dcc9d6d8!2sBudapest%2C%20F%C5%91%20u.%201%2C%201011!5e0!3m2!1shu!2shu!4v1746091909238!5m2!1shu!2shu" 
+        width="100%" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+<section>
+    <h2>Videók</h2>
+    <p>Tekintsd meg bemutatkozó videóinkat, hogy még jobban megismerd szolgáltatásainkat!</p>
+    <h3>Bemutatkozó videó</h3>
+    <video controls width="100%" height="auto">
+        <source src="borabora.mp4" type="video/mp4">
+        A böngésződ nem támogatja a videólejátszást.
+    </video>
+    <h3>Inspirációs videó</h3>
+    <iframe 
+        width="100%" 
+        height="600" 
+        src="https://www.youtube.com/embed/Fmw-F4r5sc8" 
+        title="YouTube videó" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+</section>

@@ -1,43 +1,48 @@
-<?php session_start(); ?>
-<?php if(file_exists('./logicals/'.$keres['fajl'].'.php')) { include("./logicals/{$keres['fajl']}.php"); } ?>
+<?php
+session_start();
+include('./includes/config.inc.php'); 
+
+$keres = isset($_GET['oldal']) && isset($oldalak[$_GET['oldal']]) ? $oldalak[$_GET['oldal']] : $oldalak['/'];
+
+if (file_exists('./logicals/' . $keres['fajl'] . '.php')) {
+    include("./logicals/{$keres['fajl']}.php");
+}
+?>
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
-	<meta charset="utf-8">
-	<title><?= $ablakcim['cim'] . ( (isset($ablakcim['mottó'])) ? ('|' . $ablakcim['mottó']) : '' ) ?></title>
-	<link rel="stylesheet" href="./styles/stilus.css" type="text/css">
-	<?php if(file_exists('./styles/'.$keres['fajl'].'.css')) { ?><link rel="stylesheet" href="./styles/<?= $keres['fajl']?>.css" type="text/css"><?php } ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/stilus.css">
+    <title><?= $ablakcim['cim'] ?></title>
 </head>
 <body>
-	<header>
-		<img src="./images/<?=$fejlec['kepforras']?>" alt="<?=$fejlec['kepalt']?>">
-		<h1><?= $fejlec['cim'] ?></h1>
-		<?php if (isset($fejlec['motto'])) { ?><h2><?= $fejlec['motto'] ?></h2><?php } ?>
-		<?php if(isset($_SESSION['login'])) { ?>Bejlentkezve: <strong><?= $_SESSION['csn']." ".$_SESSION['un']." (".$_SESSION['login'].")" ?></strong><?php } ?>
-	</header>
-    <div id="wrapper">
-        <aside id="nav">
-            <nav>
-                <ul>
-					<?php foreach ($oldalak as $url => $oldal) { ?>
-						<?php if(! isset($_SESSION['login']) && $oldal['menun'][0] || isset($_SESSION['login']) && $oldal['menun'][1]) { ?>
-							<li<?= (($oldal == $keres) ? ' class="active"' : '') ?>>
-							<a href="<?= ($url == '/') ? '.' : $url ?>">
-							<?= $oldal['szoveg'] ?></a>
-							</li>
-						<?php } ?>
-					<?php } ?>
-                </ul>
-            </nav>
-        </aside>
+    <header>
+        <h1><?= $fejlec['cim'] ?></h1>
+        <?php if (isset($fejlec['motto'])): ?>
+            <h2><?= $fejlec['motto'] ?></h2>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['login'])) { ?>Bejlentkezve: <strong><?= $_SESSION['csn']." ".$_SESSION['un']." (".$_SESSION['login'].")" ?></strong><?php } ?>
+    </header>
+    <nav>
+        <ul>
+            <?php foreach ($oldalak as $url => $oldal): ?>
+                <?php if ((!isset($_SESSION['login']) && $oldal['menun'][0]) || (isset($_SESSION['login']) && $oldal['menun'][1])): ?>
+                    <li<?= ($keres['fajl'] === $oldal['fajl']) ? ' class="active"' : '' ?>>
+                        <a href="?oldal=<?= $url ?>"><?= $oldal['szoveg'] ?></a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+    <main>
         <div id="content">
             <?php include("./templates/pages/{$keres['fajl']}.tpl.php"); ?>
         </div>
-    </div>
+    </main>
     <footer>
-        <?php if(isset($lablec['copyright'])) { ?>&copy;&nbsp;<?= $lablec['copyright'] ?> <?php } ?>
-		&nbsp;
-        <?php if(isset($lablec['ceg'])) { ?><?= $lablec['ceg']; ?><?php } ?>
+        <p>&copy; <?= date("Y") ?> <?= $lablec['ceg'] ?></p>
+        <p>Kapcsolat: info@utazasi-iroda.hu | Telefon: +36 1 234 5678</p>
     </footer>
 </body>
 </html>
