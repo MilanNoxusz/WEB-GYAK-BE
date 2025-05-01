@@ -1,7 +1,7 @@
-CREATE DATABASE `Adatok`
+CREATE DATABASE `webgyakea`
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-USE `Adatok`;
+USE `webgyakea`;
 
 CREATE TABLE `felhasznalok` (
   `id` int(10) unsigned NOT NULL auto_increment,

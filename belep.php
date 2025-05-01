@@ -1,30 +1,33 @@
 <?php
 session_start();
-include('./includes/config.inc.php');
 
-$dbh = new PDO('mysql:host=localhost;dbname=adatb', 'webgyakbea', 'HYZ9ZM_OK3ZO0',
-                            array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+if (isset($_POST['login']) && isset($_POST['password'])) {
+    try {
+        // Kapcsolódás az adatbázishoz
+        $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'felhasznalok', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
+        // Felhasználó keresése
+        $sqlSelect = "SELECT id, csaladi_nev, uto_nev FROM felhasznalok
+                      WHERE bejelentkezes = :login AND jelszo = sha1(:password)";
+        $stmt = $dbh->prepare($sqlSelect);
+        $stmt->execute(array(':login' => $_POST['login'], ':password' => $_POST['password']));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $login = $_POST['login'];
-    $password = sha1($_POST['password']);
-
-    $stmt = $conn->prepare('SELECT * FROM felhasznalok WHERE bejelentkezes = ? AND jelszo = ?');
-    $stmt->bind_param('ss', $login, $password);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
-        $_SESSION['login'] = $user['bejelentkezes'];
-        $_SESSION['csn'] = $user['csaladi_nev'];
-        $_SESSION['un'] = $user['uto_nev'];
-        header('Location: index.php');
-    } else {
-        echo 'Hibás felhasználónév vagy jelszó!';
+        if ($row) {
+            // Sikeres belépés
+            $_SESSION['csn'] = $row['csaladi_nev'];
+            $_SESSION['un'] = $row['uto_nev'];
+            $_SESSION['login'] = $_POST['login'];
+            header("Location: index.php");
+        } else {
+            echo "Hibás felhasználónév vagy jelszó!";
+        }
+    } catch (PDOException $e) {
+        echo "Hiba történt: " . $e->getMessage();
     }
+} else {
+    echo "Hiányzó adatok! Kérlek, töltsd ki az összes mezőt.";
 }
 ?>
 <footer>

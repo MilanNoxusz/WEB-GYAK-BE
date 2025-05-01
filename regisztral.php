@@ -1,25 +1,28 @@
 <?php
-include('./includes/config.inc.php');
+if (isset($_POST['csn']) && isset($_POST['un']) && isset($_POST['login']) && isset($_POST['password'])) {
+    try {
+        // Kapcsolódás az adatbázishoz
+        $dbh = new PDO('mysql:host=172.20.100.1;dbname=webgyakbea', 'webgyakbea', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
-$dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0',
-                            array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+        // Adatok beszúrása
+        $sqlInsert = "INSERT INTO felhasznalok (csaladi_nev, uto_nev, bejelentkezes, jelszo)
+                      VALUES (:csn, :un, :login, sha1(:password))";
+        $stmt = $dbh->prepare($sqlInsert);
+        $stmt->execute(array(
+            ':csn' => $_POST['csn'],
+            ':un' => $_POST['un'],
+            ':login' => $_POST['login'],
+            ':password' => $_POST['password']
+        ));
 
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $csn = $_POST['csn'];
-    $un = $_POST['un'];
-    $login = $_POST['login'];
-    $password = sha1($_POST['password']);
-
-    $stmt = $conn->prepare('INSERT INTO felhasznalok (csaladi_nev, uto_nev, bejelentkezes, jelszo) VALUES (?, ?, ?, ?)');
-    $stmt->bind_param('ssss', $csn, $un, $login, $password);
-
-    if ($stmt->execute()) {
-        echo 'Sikeres regisztráció! Most már bejelentkezhet.';
-    } else {
-        echo 'Hiba történt a regisztráció során.';
+        // Sikeres regisztráció
+        echo "Sikeres regisztráció! Most már bejelentkezhetsz.";
+    } catch (PDOException $e) {
+        echo "Hiba történt: " . $e->getMessage();
     }
+} else {
+    echo "Hiányzó adatok! Kérlek, töltsd ki az összes mezőt.";
 }
 ?>
 <footer>
