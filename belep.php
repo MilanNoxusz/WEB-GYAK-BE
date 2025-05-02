@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST['login']) && isset($_POST['password'])) {
     try {
         // Kapcsolódás az adatbázishoz
-        $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'felhasznalok', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
         // Felhasználó keresése

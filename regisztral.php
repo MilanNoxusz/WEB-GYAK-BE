@@ -1,23 +1,31 @@
 <?php
 if (isset($_POST['csn']) && isset($_POST['un']) && isset($_POST['login']) && isset($_POST['password'])) {
     try {
-        // Kapcsolódás az adatbázishoz
-        $dbh = new PDO('local:3306;dbname=webgyakbea', 'webgyakbea', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+       $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
-        // Adatok beszúrása
-        $sqlInsert = "INSERT INTO felhasznalok (csaladi_nev, uto_nev, bejelentkezes, jelszo)
-                      VALUES (:csn, :un, :login, sha1(:password))";
-        $stmt = $dbh->prepare($sqlInsert);
-        $stmt->execute(array(
-            ':csn' => $_POST['csn'],
-            ':un' => $_POST['un'],
-            ':login' => $_POST['login'],
-            ':password' => $_POST['password']
-        ));
+        $sqlSelect = "SELECT id FROM felhasznalok WHERE bejelentkezes = :login";
+        $sth = $dbh->prepare($sqlSelect);
+        $sth->execute(array(':login' => $_POST['login']));
+        if ($sth->fetch(PDO::FETCH_ASSOC)) {
+            echo "A felhasználónév már foglalt!";
+        } else {
+            $sqlInsert = "INSERT INTO felhasznalok (csaladi_nev, uto_nev, bejelentkezes, jelszo)
+                          VALUES (:csn, :un, :login, sha1(:password))";
+            $stmt = $dbh->prepare($sqlInsert);
+            $stmt->execute(array(
+                ':csn' => $_POST['csn'],
+                ':un' => $_POST['un'],
+                ':login' => $_POST['login'],
+                ':password' => $_POST['password']
+            ));
 
-        // Sikeres regisztráció
-        echo "Sikeres regisztráció! Most már bejelentkezhetsz.";
+            if ($stmt->rowCount()) {
+                echo "Sikeres regisztráció! Most már bejelentkezhetsz.";
+            } else {
+                echo "A regisztráció nem sikerült.";
+            }
+        }
     } catch (PDOException $e) {
         echo "Hiba történt: " . $e->getMessage();
     }
