@@ -2,7 +2,7 @@
 if (isset($_POST['csn']) && isset($_POST['un']) && isset($_POST['login']) && isset($_POST['password'])) {
     try {
         // Kapcsolódás az adatbázishoz
-        $dbh = new PDO('mysql:host=172.20.100.1;dbname=webgyakbea', 'webgyakbea', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $dbh = new PDO('local:3306;dbname=webgyakbea', 'webgyakbea', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
         // Adatok beszúrása
