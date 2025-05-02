@@ -28,12 +28,13 @@ if (file_exists('./logicals/' . $keres['fajl'] . '.php')) {
         <ul>
             <?php foreach ($oldalak as $url => $oldal): ?>
                 <?php if ((!isset($_SESSION['login']) && $oldal['menun'][0]) || (isset($_SESSION['login']) && $oldal['menun'][1])): ?>
-                    <li<?= ($keres['fajl'] === $oldal['fajl']) ? ' class="active"' : '' ?>>
-                        <a href="?oldal=<?= $url ?>"><?= $oldal['szoveg'] ?></a>
-                    </li>
+                    <?php if (!empty($oldal['szoveg']) && $url !== 'regisztral'): ?>
+                        <li<?= ($keres['fajl'] === $oldal['fajl']) ? ' class="active"' : '' ?>>
+                            <a href="?oldal=<?= $url ?>"><?= $oldal['szoveg'] ?></a>
+                        </li>
+                    <?php endif; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <li><a href="regisztral.php">Regisztráció</a></li>
         </ul>
     </nav>
     <main>

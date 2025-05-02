@@ -113,3 +113,47 @@ nav ul li.active a {
         font-size: 0.9rem;
     }
 }
+
+/* Képgaléria konténer */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 oszlop */
+    gap: 20px; /* Távolság a képek között */
+    margin: 20px 0;
+    }
+
+/* Képgaléria képek stílusa */
+.gallery-item {
+    width: 200px; /* Fix szélesség a szülőelemhez */
+    height: 200px; /* Fix magasság a szülőelemhez */
+        overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+    width: 100%; /* A kép szélessége igazodik a szülőelemhez */
+    height: 100%; /* A kép magassága igazodik a szülőelemhez */
+    object-fit: cover; /* A kép kitölti a rendelkezésre álló helyet */
+    display: block;
+    border-radius: 8px; /* Lekerekített sarkok */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Árnyék a képekhez */
+}
+
+.gallery-img {
+    width: 100%; /* A kép szélessége igazodik a szülőelemhez */
+    height: 100%; /* A kép magassága igazodik a szülőelemhez */
+    object-fit: cover; /* A kép kitölti a rendelkezésre álló helyet */
+    display: border-radius 8px; /* Lekerekített sarkok */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Árnyék a képekhez */
+    border-radius: 8px; /* Lekerekített sarkok */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Árnyék a képekhez */
+}
+
+div.gallery div.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
