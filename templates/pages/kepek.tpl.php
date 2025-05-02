@@ -1,9 +1,22 @@
 <h2>Képgaléria</h2>
+
+<?php if (isset($_SESSION['feltoltes_uzenetek'])): ?>
+    <ul>
+        <?php foreach ($_SESSION['feltoltes_uzenetek'] as $uzenet): ?>
+            <li><?= htmlspecialchars($uzenet) ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <?php unset($_SESSION['feltoltes_uzenetek']); // Üzenetek törlése a munkamenetből ?>
+<?php endif; ?>
+
 <div class="gallery">
-    <div class="gallery-item"><img class="gallery-img" src="images/kep1.jpg" alt="Kép 1"></div>
-    <div class="gallery-item"><img class="gallery-img" src="images/kep2.jpg" alt="Kép 2"></div>
-    <div class="gallery-item"><img class="gallery-img" src="images/kep3.jpg" alt="Kép 3"></div>
-    <div class="gallery-item"><img class="gallery-img" src="images/kep4.jpg" alt="Kép 4"></div>
+    <?php
+    $kepek = glob("images/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+    foreach ($kepek as $kep): ?>
+        <div class="gallery-item">
+            <img class="gallery-img" src="<?= htmlspecialchars($kep) ?>" alt="Kép">
+        </div>
+    <?php endforeach; ?>
 </div>
 
 <?php if (isset($_SESSION['login'])): ?>
