@@ -30,17 +30,6 @@
     </ul>
 </section>
 <section>
-    <h2>Kapcsolatfelvétel</h2>
-    <p>
-        Ha bármilyen kérdésed van, vagy segítségre van szükséged az utazás megtervezésében, ne habozz kapcsolatba lépni velünk!
-    </p>
-    <p>
-        <strong>Email:</strong> info@utazasi-iroda.hu<br>
-        <strong>Telefon:</strong> +36 1 234 5678<br>
-        <strong>Cím:</strong> 1051 Budapest, Fő utca 1.
-    </p>
-</section>
-<section>
     <h2>Hol találsz minket?</h2>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2695.533378980561!2d19.037878676824214!3d47.49900289540075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741dc3da8582ae9%3A0xb5a040b0dcc9d6d8!2sBudapest%2C%20F%C5%91%20u.%201%2C%201011!5e0!3m2!1shu!2shu!4v1746091909238!5m2!1shu!2shu" 
         width="100%" 

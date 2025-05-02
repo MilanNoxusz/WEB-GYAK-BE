@@ -10,21 +10,46 @@
     </p>
 </section>
 
+<?php if (isset($_SESSION['uzenet'])): ?>
+    <p style="color: green; font-weight: bold;"><?= htmlspecialchars($_SESSION['uzenet']) ?></p>
+    <?php unset($_SESSION['uzenet']); // Üzenet törlése a munkamenetből ?>
+<?php endif; ?>
+
 <section>
     <h3>Üzenőfal</h3>
     <p>Itt hagyhatsz üzenetet az oldal tulajdonosának:</p>
     <form id="kapcsolatForm" method="post" action="kapcsolat.php">
         <label for="nev">Név:</label>
-        <input type="text" id="nev" name="nev" value="<?= isset($_SESSION['csn']) ? htmlspecialchars($_SESSION['csn'] . ' ' . $_SESSION['un']) : '' ?>" <?= isset($_SESSION['csn']) ? 'readonly' : 'required' ?>>
+        <input type="text" id="nev" name="nev" value="<?= isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : 'Vendég' ?>" readonly>
         <br>
         <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" value="<?= isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : '' ?>" <?= isset($_SESSION['login']) ? 'readonly' : 'required' ?>>
+        <input type="email" id="email" name="email" value="<?= isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : '' ?>" <?= isset($_SESSION['email']) ? 'readonly' : 'required' ?>>
         <br>
         <label for="uzenet">Üzenet:</label>
         <textarea id="uzenet" name="uzenet" rows="5" required></textarea>
         <br>
         <button type="submit">Küldés</button>
     </form>
+</section>
+
+<section>
+    <h3>Korábbi üzenetek</h3>
+    <?php
+    try {
+        $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
+
+        $sqlSelect = "SELECT nev, uzenet, datum FROM uzenetek ORDER BY datum DESC";
+        foreach ($dbh->query($sqlSelect) as $row): ?>
+            <div class="comment">
+                <p><strong><?= htmlspecialchars($row['nev']) ?>:</strong> <?= htmlspecialchars($row['uzenet']) ?></p>
+                <p><em><?= htmlspecialchars($row['datum']) ?></em></p>
+            </div>
+        <?php endforeach;
+    } catch (PDOException $e) {
+        echo "<p>Hiba történt az üzenetek betöltése során: " . htmlspecialchars($e->getMessage()) . "</p>";
+    }
+    ?>
 </section>
 
 <script>

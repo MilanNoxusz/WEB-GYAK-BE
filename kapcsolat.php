@@ -8,11 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uzenet = trim($_POST['uzenet']);
 
     if (empty($nev) || empty($email) || empty($uzenet)) {
-        die("Minden mezőt ki kell tölteni!");
+        $_SESSION['uzenet'] = "Minden mezőt ki kell tölteni!";
+        header("Location: index.php?oldal=kapcsolat");
+        exit();
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Érvénytelen e-mail cím!");
+        $_SESSION['uzenet'] = "Érvénytelen e-mail cím!";
+        header("Location: index.php?oldal=kapcsolat");
+        exit();
     }
 
     try {
@@ -23,11 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $dbh->prepare($sqlInsert);
         $stmt->execute(array(':nev' => $nev, ':email' => $email, ':uzenet' => $uzenet));
 
-        echo "Az üzeneted sikeresen elküldve!";
+        if ($stmt->rowCount()) {
+            $_SESSION['uzenet'] = "Az üzeneted sikeresen elküldve!";
+        } else {
+            $_SESSION['uzenet'] = "Hiba történt az üzenet küldése során.";
+        }
     } catch (PDOException $e) {
-        echo "Hiba történt: " . $e->getMessage();
+        $_SESSION['uzenet'] = "Hiba történt: " . $e->getMessage();
     }
-} else {
-    echo "Hibás kérés!";
+
+    header("Location: index.php?oldal=kapcsolat");
+    exit();
 }
 ?>
