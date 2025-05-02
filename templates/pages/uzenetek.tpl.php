@@ -1,32 +1,29 @@
 <!-- filepath: d:\WebEloadasBeadando\WEB-GYAK-BE\templates\pages\uzenetek.tpl.php -->
-<h2>Beérkezett üzenetek</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Név</th>
-            <th>E-mail</th>
-            <th>Üzenet</th>
-            <th>Dátum</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        try {
-            $dbh = new PDO('mysql:host=localhost;dbname=webgyakea', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
+<section>
+    <h2>Üzenetek</h2>
+    <?php
+    try {
+        $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
-            $sqlSelect = "SELECT nev, email, uzenet, datum FROM uzenetek ORDER BY datum DESC";
-            foreach ($dbh->query($sqlSelect) as $row) {
-                echo "<tr>
-                        <td>{$row['nev']}</td>
-                        <td>{$row['email']}</td>
-                        <td>{$row['uzenet']}</td>
-                        <td>{$row['datum']}</td>
-                      </tr>";
-            }
-        } catch (PDOException $e) {
-            echo "<tr><td colspan='4'>Hiba történt: " . $e->getMessage() . "</td></tr>";
-        }
-        ?>
-    </tbody>
-</table>
+        $sqlSelect = "SELECT nev, uzenet, datum FROM uzenetek ORDER BY datum DESC";
+        $stmt = $dbh->query($sqlSelect);
+
+        if ($stmt->rowCount() > 0): ?>
+            <ul class="message-list">
+                <?php foreach ($stmt as $row): ?>
+                    <li class="message-item">
+                        <p><strong><?= htmlspecialchars($row['nev'] ?: 'Vendég') ?>:</strong></p>
+                        <p><?= htmlspecialchars($row['uzenet']) ?></p>
+                        <p class="message-date"><em><?= htmlspecialchars($row['datum']) ?></em></p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>Nincs megjeleníthető üzenet.</p>
+        <?php endif;
+    } catch (PDOException $e) {
+        echo "<p>Hiba történt az üzenetek betöltése során: " . htmlspecialchars($e->getMessage()) . "</p>";
+    }
+    ?>
+</section>

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute(array(':nev' => $nev, ':email' => $email, ':uzenet' => $uzenet));
 
         if ($stmt->rowCount()) {
-            $_SESSION['uzenet'] = "Az üzeneted sikeresen elküldve!";
+            $_SESSION['uzenet'] = "Az üzenetet sikeresen elküldve, megtekintheti az Üzenetek menüben, amennyiben regisztrált.";
         } else {
             $_SESSION['uzenet'] = "Hiba történt az üzenet küldése során.";
         }

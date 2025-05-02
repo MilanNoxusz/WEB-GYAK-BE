@@ -32,26 +32,6 @@
     </form>
 </section>
 
-<section>
-    <h3>Korábbi üzenetek</h3>
-    <?php
-    try {
-        $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
-
-        $sqlSelect = "SELECT nev, uzenet, datum FROM uzenetek ORDER BY datum DESC";
-        foreach ($dbh->query($sqlSelect) as $row): ?>
-            <div class="comment">
-                <p><strong><?= htmlspecialchars($row['nev']) ?>:</strong> <?= htmlspecialchars($row['uzenet']) ?></p>
-                <p><em><?= htmlspecialchars($row['datum']) ?></em></p>
-            </div>
-        <?php endforeach;
-    } catch (PDOException $e) {
-        echo "<p>Hiba történt az üzenetek betöltése során: " . htmlspecialchars($e->getMessage()) . "</p>";
-    }
-    ?>
-</section>
-
 <script>
     document.getElementById('kapcsolatForm').addEventListener('submit', function (e) {
         const nev = document.getElementById('nev').value.trim();
