@@ -159,3 +159,16 @@ div.gallery div.gallery-item img {
     display: block;
     border-radius: 8px;
 }
+
+/* Középre igazítás a kapcsolat oldalhoz */
+section {
+    text-align: center; /* Szöveg középre igazítása */
+    margin: 20px auto; /* Automatikus középre igazítás */
+    max-width: 800px; /* Maximális szélesség */
+}
+
+form {
+    text-align: center; /* Az űrlap elemeinek középre igazítása */
+    margin: 20px auto; /* Automatikus középre igazítás */
+    max-width: 600px; /* Maximális szélesség */
+}

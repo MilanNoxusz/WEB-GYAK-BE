@@ -22,7 +22,11 @@ if (file_exists('./logicals/' . $keres['fajl'] . '.php')) {
         <?php if (isset($fejlec['motto'])): ?>
             <h2><?= $fejlec['motto'] ?></h2>
         <?php endif; ?>
-        <?php if(isset($_SESSION['login'])) { ?>Bejlentkezve: <strong><?= $_SESSION['csn']." ".$_SESSION['un']." (".$_SESSION['login'].")" ?></strong><?php } ?>
+        <?php if (isset($_SESSION['login'])): ?>
+            Bejelentkezve: <strong><?= $_SESSION['csn'] . " " . $_SESSION['un'] . " (" . $_SESSION['login'] . ")" ?></strong>
+        <?php else: ?>
+            Bejelentkezve: <strong>Vendég</strong>
+        <?php endif; ?>
     </header>
     <nav>
         <ul>
@@ -35,6 +39,9 @@ if (file_exists('./logicals/' . $keres['fajl'] . '.php')) {
                     <?php endif; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php if (isset($_SESSION['login'])): ?>
+                <li><a href="kilep.php">Kilépés</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
     <main>
