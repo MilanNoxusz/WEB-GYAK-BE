@@ -5,9 +5,8 @@ if (!isset($_SESSION['login'])) {
     die("Csak bejelentkezett felhasználók tölthetnek fel képeket.");
 }
 
-// Konfiguráció
 $target_dir = "images/";
-$max_size = 2000000; // 2 MB
+$max_size = 2000000; 
 $allowed_types = ["image/jpeg", "image/png", "image/gif"];
 $messages = [];
 
@@ -33,10 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Tároljuk az üzeneteket a munkamenetben
     $_SESSION['feltoltes_uzenetek'] = $messages;
 
-    // Visszairányítás a "Képek" oldalra
     header("Location: index.php?oldal=kepek");
     exit();
 }

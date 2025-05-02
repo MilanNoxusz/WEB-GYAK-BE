@@ -1,4 +1,3 @@
-<!-- filepath: d:\WebEloadasBeadando\WEB-GYAK-BE\templates\pages\uzenetek.tpl.php -->
 <section>
     <h2>Üzenetek</h2>
     <?php

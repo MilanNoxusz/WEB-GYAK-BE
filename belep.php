@@ -3,11 +3,9 @@ session_start();
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
     try {
-        // Kapcsolódás az adatbázishoz
         $dbh = new PDO('mysql:host=localhost;dbname=webgyakbea', 'webgyakbea', 'HYZ9ZM_OK3ZO0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         $dbh->query('SET NAMES utf8 COLLATE utf8_hungarian_ci');
 
-        // Felhasználó keresése
         $sqlSelect = "SELECT id, csaladi_nev, uto_nev FROM felhasznalok
                       WHERE bejelentkezes = :login AND jelszo = sha1(:password)";
         $stmt = $dbh->prepare($sqlSelect);
@@ -15,7 +13,6 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
-            // Sikeres belépés
             $_SESSION['csn'] = $row['csaladi_nev'];
             $_SESSION['un'] = $row['uto_nev'];
             $_SESSION['login'] = $_POST['login'];

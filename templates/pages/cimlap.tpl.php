@@ -1,4 +1,3 @@
-<!-- filepath: d:\WebEloadasBeadando\WEB-GYAK-BE\templates\pages\cimlap.tpl.php -->
 <section>
     <p>
         Fedezd fel a világot velünk! Széles körű utazási ajánlataink között biztosan megtalálod a számodra tökéletes úti célt. 

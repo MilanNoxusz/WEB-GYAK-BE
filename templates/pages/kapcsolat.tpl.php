@@ -12,7 +12,7 @@
 
 <?php if (isset($_SESSION['uzenet'])): ?>
     <p style="color: green; font-weight: bold;"><?= htmlspecialchars($_SESSION['uzenet']) ?></p>
-    <?php unset($_SESSION['uzenet']); // Üzenet törlése a munkamenetből ?>
+    <?php unset($_SESSION['uzenet']);  ?>
 <?php endif; ?>
 
 <section>

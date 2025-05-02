@@ -1,4 +1,3 @@
-<!-- filepath: d:\WebEloadasBeadando\WEB-GYAK-BE\kapcsolat.php -->
 <?php
 session_start();
 

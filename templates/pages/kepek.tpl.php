@@ -6,7 +6,7 @@
             <li><?= htmlspecialchars($uzenet) ?></li>
         <?php endforeach; ?>
     </ul>
-    <?php unset($_SESSION['feltoltes_uzenetek']); // Üzenetek törlése a munkamenetből ?>
+    <?php unset($_SESSION['feltoltes_uzenetek']);  ?>
 <?php endif; ?>
 
 <div class="gallery">
