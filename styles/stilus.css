@@ -119,13 +119,15 @@ nav ul li.active a {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 oszlop */
     gap: 20px; /* Távolság a képek között */
-    margin: 20px 0;
-    }
+    margin: 20px auto; /* Automatikus középre igazítás */
+    justify-content: center; /* Képek középre igazítása vízszintesen */
+    max-width: 500px; /* Maximális szélesség a galériának */
+}
 
 /* Képgaléria képek stílusa */
 .gallery-item {
-    width: 200px; /* Fix szélesség a szülőelemhez */
-    height: 200px; /* Fix magasság a szülőelemhez */
+    width: 500px; /* Fix szélesség a szülőelemhez */
+    height: 500px; /* Fix magasság a szülőelemhez */
         overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
